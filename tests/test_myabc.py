@@ -20,6 +20,8 @@ class TestMyABC():
         def f(self):
             return 69
 
+    class InterfaceSubclass(Interface):
+        pass
 
     @staticmethod
     def test_abstract_method_call():
@@ -34,6 +36,11 @@ class TestMyABC():
         with pytest.raises(AbstractClassInstantiationException):
             i = TestMyABC.Interface()
     
+    @staticmethod
+    def test_not_implemented_instantiation_prevention():
+        with pytest.raises(AbstractClassInstantiationException):
+            i = TestMyABC.InterfaceSubclass()
+
     @staticmethod
     def test_nonabstract_base_method():
         a = TestMyABC.ConcreteClassA()
