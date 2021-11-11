@@ -1,5 +1,5 @@
 import pytest
-from myabc import MyABC, myabstractmethod, AbstractClassInstantiationException
+from metademo.myabc import MyABC, myabstractmethod, AbstractClassInstantiationException
 
 
 class TestMyABC():
@@ -10,7 +10,7 @@ class TestMyABC():
             pass
 
         def identity(self, x):
-            return x 
+            return x
 
     class ConcreteClassA(Interface):
         def f(self):
@@ -22,14 +22,21 @@ class TestMyABC():
 
     class InterfaceSubclass(Interface):
         pass
+    
+    class ConcreteClassC(InterfaceSubclass):
+        def f(self):
+            return 37
+
 
     @staticmethod
     def test_abstract_method_call():
         a = TestMyABC.ConcreteClassA()
         b = TestMyABC.ConcreteClassB()
+        c = TestMyABC.ConcreteClassC()
 
         assert a.f() == 42
         assert b.f() == 69
+        assert c.f() == 37
 
     @staticmethod
     def test_abstract_instantiation_prevention():

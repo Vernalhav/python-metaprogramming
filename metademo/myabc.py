@@ -1,3 +1,4 @@
+
 class AbstractClassInstantiationException(Exception):
     pass
 
@@ -8,19 +9,15 @@ def myabstractmethod(f):
 
 
 class MyABCMeta(type):
-    @staticmethod
-    def get_abstract_methods(namespace):
-        abstract_methods = []
+    def __is_abstract(abcls, attribute: str):
+        return hasattr(getattr(abcls, attribute), '__abstract')
 
-        for elem in namespace.values():
-            if getattr(elem, '__abstract', False) is True:
-                abstract_methods.append(elem)
-
-        return abstract_methods
-
+    def __has_abstract_methods(abcls):
+        abcls_attributes = dir(abcls)
+        return any(map(abcls.__is_abstract, abcls_attributes))
 
     def __call__(abcls, *args, **kwargs):
-        if len(MyABCMeta.get_abstract_methods(abcls.__dict__)) > 0:
+        if MyABCMeta.__has_abstract_methods(abcls):
             raise AbstractClassInstantiationException(f'Cannot instantiate abstract class {abcls.__name__}') 
 
         return super().__call__(*args, **kwargs)
