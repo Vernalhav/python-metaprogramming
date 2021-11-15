@@ -9,10 +9,10 @@ def myabstractmethod(f):
 
 
 class MyABCMeta(type):
-    def __is_abstract(abcls, attribute: str):
+    def __is_abstract(abcls, attribute: str) -> bool:
         return hasattr(getattr(abcls, attribute), '__abstract')
 
-    def __has_abstract_methods(abcls):
+    def __has_abstract_methods(abcls) -> bool:
         abcls_attributes = dir(abcls)
         return any(map(abcls.__is_abstract, abcls_attributes))
 
