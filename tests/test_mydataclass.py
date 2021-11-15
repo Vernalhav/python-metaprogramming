@@ -1,4 +1,6 @@
 from metademo.mydataclass import MyDataClass
+import pytest
+
 
 class TestMyDataClass():
     
@@ -6,8 +8,20 @@ class TestMyDataClass():
         name: str
         age: int
 
+    class Empty(MyDataClass):
+        pass
+
     @staticmethod
-    def test_construction():        
+    def test_bad_instantiation():
+        with pytest.raises(TypeError):
+            p = TestMyDataClass.Person()
+
+    @staticmethod
+    def test_empty_insantiation():
+        e = TestMyDataClass.Empty()
+
+    @staticmethod
+    def test_attributes():        
         p = TestMyDataClass.Person('William', 22)
         assert p.name == 'William'
         assert p.age == 22
