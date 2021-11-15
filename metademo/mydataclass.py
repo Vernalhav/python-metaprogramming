@@ -12,7 +12,7 @@ class MyDataClassMeta(type):
 def __init__({init_signature}):
 {init_body}
 '''
-        print(init_method)
+
         exec(init_method, globals(), namespace)
 
         return super().__new__(cls, name, bases, namespace)
