@@ -17,7 +17,7 @@ class MyABCMeta(type):
         return any(map(abcls.__is_abstract, abcls_attributes))
 
     def __call__(abcls, *args, **kwargs):
-        if MyABCMeta.__has_abstract_methods(abcls):
+        if abcls.__has_abstract_methods():
             raise AbstractClassInstantiationException(f'Cannot instantiate abstract class {abcls.__name__}') 
 
         return super().__call__(*args, **kwargs)
