@@ -65,9 +65,13 @@ victor = Person('Victor', 21)   # Automatically generated init method
 victor.greet()                  # Hello, Victor!
 ```
 
-# Possible future features
+# TODO
+## General
+- Add CI automated testing and linting with Github Actions
+- Rename `metademo/` directoru to `src/`
+
 ## Abstract Base Class
-- Throw error if abstract and concrete type annotations do not match
+- Throw error if abstract and concrete type annotation signature do not match
 
 ## Dataclass
 - Add `repr` method
