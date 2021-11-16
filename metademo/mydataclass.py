@@ -1,4 +1,5 @@
 from typing import Dict, List
+import sys
 
 
 class MyDataClassMeta(type):
@@ -6,7 +7,7 @@ class MyDataClassMeta(type):
         attributes = namespace.get('__annotations__', {})
 
         init_method = MyDataClassMeta.__get_init_method(attributes)
-        exec(init_method, globals(), namespace)
+        exec(init_method, sys.modules[namespace['__module__']].__dict__, namespace)
 
         return super().__new__(cls, name, bases, namespace)
 
