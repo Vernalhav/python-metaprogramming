@@ -1,5 +1,4 @@
-from typing import Any, Dict, List
-from pprint import pprint
+from typing import Dict, List
 
 
 class MyDataClassMeta(type):
@@ -7,7 +6,6 @@ class MyDataClassMeta(type):
         attributes = namespace.get('__annotations__', {})
 
         init_method = MyDataClassMeta.__get_init_method(attributes)
-        pprint(globals())
         exec(init_method, globals(), namespace)
 
         return super().__new__(cls, name, bases, namespace)
