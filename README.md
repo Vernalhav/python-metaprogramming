@@ -68,7 +68,7 @@ victor.greet()                  # Hello, Victor!
 # TODO
 ## General
 - Add CI automated testing and linting with Github Actions
-- Rename `metademo/` directoru to `src/`
+- Rename `metademo/` directory to `src/`
 
 ## Abstract Base Class
 - Throw error if abstract and concrete type annotation signature do not match
