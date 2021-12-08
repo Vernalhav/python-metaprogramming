@@ -35,15 +35,15 @@ from typing import List, Dict
 
 class DataReader(MyABC):
   @myabstractmethod
-  def read_input(data_path: str) -> List[Dict]:
+  def read_input(self, data_path: str) -> List[Dict]:
     pass
     
 class CSVReader(DataReader):
-  def read_input(data_path: str) -> List[Dict]:
+  def read_input(self, data_path: str) -> List[Dict]:
     print(f'Reading csv file {data_path}...')
 
 class DatabaseReader(DataReader):
-  def read_input(data_path: str) -> List[Dict]:
+  def read_input(self, data_path: str) -> List[Dict]:
     print(f'Reading data from table {data_path}...')
 
 csv_reader = CSVReader()
