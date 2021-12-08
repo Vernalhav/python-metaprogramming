@@ -1,4 +1,3 @@
-
 class AbstractClassInstantiationException(Exception):
     pass
 
@@ -18,9 +17,10 @@ class MyABCMeta(type):
 
     def __call__(abcls, *args, **kwargs):
         if abcls.__has_abstract_methods():
-            raise AbstractClassInstantiationException(f'Cannot instantiate abstract class {abcls.__name__}') 
+            error = f'Cannot instantiate abstract class {abcls.__name__}'
+            raise AbstractClassInstantiationException(error) 
 
-        return super().__call__(*args, **kwargs)
+        return super(MyABCMeta, abcls).__call__(*args, **kwargs)
 
 
 class MyABC(metaclass=MyABCMeta):
